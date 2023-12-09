@@ -10,12 +10,12 @@ import Foundation
 import SwiftUI
 
 struct currencySelectionView: View {
-    @State private var selectedOption = "From"
+    @Binding var selectedOption: Currency
     
     var body: some View {
         Picker("From", selection: $selectedOption) {
             ForEach(Currency.allCases, id: \.self) { index in
-                Text(index.rawValue)
+                Text(index.rawValue).tag(index)
             }
         }
         .pickerStyle(MenuPickerStyle()) // Customize the picker style
@@ -25,6 +25,7 @@ struct currencySelectionView: View {
 
 struct DropdownMenuButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        currencySelectionView()
+        @State var selectedCurrency: Currency = Currency.AED
+        currencySelectionView(selectedOption: $selectedCurrency)
     }
 }

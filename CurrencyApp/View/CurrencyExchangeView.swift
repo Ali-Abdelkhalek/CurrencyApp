@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct CurrencyExchangeView: View {
-    @State private var baseCurrency: String = "AED"
-    @State private var TargetCurrency: String = "AED"
-    @State private var amount: String = ""
-    
-    let currencies = ["USD", "EUR", "GBP", "JPY", "CAD"] // Add more currencies as needed
+    @State private var baseCurrency: Currency = Currency.AED
+    @State private var targetCurrency: Currency = Currency.AED
+    @State private var baseAmount: String = ""
+    @State private var targetAmount: String = "0"
+    let model = CurrencyExchangeViewModel()
     
     var body: some View {
         NavigationView{
@@ -20,26 +20,35 @@ struct CurrencyExchangeView: View {
             VStack {
                 
                 HStack{
-                    // From Currency Dropdown
                     Text("From")
                     currencySelectionView(selectedOption: $baseCurrency)
                     Spacer()
                     
                     Button(action: {
-                        // Perform reverse action
+                        let tempCurrency = baseCurrency
+                        baseCurrency = targetCurrency
+                        targetCurrency = tempCurrency
+                        // TODO: update UI and recalculate
+                        
                     }) {
                         Image(systemName: "arrow.left.arrow.right")
                     }
+                    
+                    
                     Spacer()
-                    // From Currency Dropdown
                     Text("From")
-                    currencySelectionView()
+                    currencySelectionView(selectedOption: $targetCurrency)
                 }
                 HStack{
-                    TextField("Enter amount", text: $amount)
+                    TextField("Enter amount", text: $baseAmount)
                         .padding()
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                    Text("0")
+                        .onChange(of: baseAmount) { newValue, _ in
+                            //TODO: Guard on non number inputs
+                            //TODO: customize the keyboard for numbers only
+                            updateExchangeRate(forBaseAmount: newValue)
+                        }
+                    Text($targetAmount.wrappedValue)
                 }
                 
                 NavigationLink(destination: HistoryView()) {
@@ -48,6 +57,20 @@ struct CurrencyExchangeView: View {
                 
             }
             .padding()
+            
+        }
+    }
+    
+    func updateExchangeRate(forBaseAmount newBaseAmount: String) {
+        //TODO: Guard on optionals
+        model.calculateExchangeRate(of: Double(newBaseAmount) ?? 0.0, from: baseCurrency, to: targetCurrency){ result in
+            switch result {
+            case .failure(_):
+                //TODO: Show error message
+                break
+            case .success(let targetAmount):
+                self.targetAmount = "\(targetAmount)"
+            }
             
         }
     }

@@ -7,25 +7,6 @@
 
 import Foundation
 
-enum FixerInterfaceError: Error, LocalizedError {
-    
-    case InvalidURL
-    case RequestReturnedStatusCodeOtherThan2xx
-    case NoDataWasReturnedByTheRequest
-    
-    var errorDescription: String? {
-        switch self {
-        case .InvalidURL:
-            return NSLocalizedString("Something wrong happened\n Please check your network and try again.", comment: "")
-        case .RequestReturnedStatusCodeOtherThan2xx:
-            return NSLocalizedString("Something wrong happened\n Please check your network and try again.", comment: "")
-        case .NoDataWasReturnedByTheRequest:
-            return NSLocalizedString("Something wrong happened\n Please check your network and try again.", comment: "")
-            
-        }
-    }
-}
-
 class FixerInterface {
     
     static let shared = FixerInterface()
