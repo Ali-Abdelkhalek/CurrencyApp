@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct CurrencyExchangeView: View {
-    @State private var fromCurrency: String = "USD"
-    @State private var toCurrency: String = "EUR"
+    @State private var baseCurrency: String = "AED"
+    @State private var TargetCurrency: String = "AED"
     @State private var amount: String = ""
     
     let currencies = ["USD", "EUR", "GBP", "JPY", "CAD"] // Add more currencies as needed
@@ -22,7 +22,7 @@ struct CurrencyExchangeView: View {
                 HStack{
                     // From Currency Dropdown
                     Text("From")
-                    currencySelectionView()
+                    currencySelectionView(selectedOption: $baseCurrency)
                     Spacer()
                     
                     Button(action: {
@@ -42,7 +42,7 @@ struct CurrencyExchangeView: View {
                     Text("0")
                 }
                 
-                NavigationLink(destination: currencySelectionView()) {
+                NavigationLink(destination: HistoryView()) {
                     Text("Details")
                 }
                 
