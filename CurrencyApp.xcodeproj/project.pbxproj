@@ -14,6 +14,10 @@
 		668094842B246278004CA4E1 /* CurrencyAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668094832B246278004CA4E1 /* CurrencyAppTests.swift */; };
 		6680948E2B246278004CA4E1 /* CurrencyAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6680948D2B246278004CA4E1 /* CurrencyAppUITests.swift */; };
 		668094902B246278004CA4E1 /* CurrencyAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6680948F2B246278004CA4E1 /* CurrencyAppUITestsLaunchTests.swift */; };
+		6680949E2B2462A2004CA4E1 /* FixerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6680949D2B2462A2004CA4E1 /* FixerInterface.swift */; };
+		668094A12B2464EF004CA4E1 /* CurrencyExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668094A02B2464EF004CA4E1 /* CurrencyExchangeView.swift */; };
+		668094A32B2465DD004CA4E1 /* CurrencyButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668094A22B2465DD004CA4E1 /* CurrencyButtonView.swift */; };
+		668094A52B2466F2004CA4E1 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668094A42B2466F2004CA4E1 /* Currency.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +48,10 @@
 		668094892B246278004CA4E1 /* CurrencyAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6680948D2B246278004CA4E1 /* CurrencyAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyAppUITests.swift; sourceTree = "<group>"; };
 		6680948F2B246278004CA4E1 /* CurrencyAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6680949D2B2462A2004CA4E1 /* FixerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixerInterface.swift; sourceTree = "<group>"; };
+		668094A02B2464EF004CA4E1 /* CurrencyExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExchangeView.swift; sourceTree = "<group>"; };
+		668094A22B2465DD004CA4E1 /* CurrencyButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyButtonView.swift; sourceTree = "<group>"; };
+		668094A42B2466F2004CA4E1 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +102,8 @@
 		668094712B246276004CA4E1 /* CurrencyApp */ = {
 			isa = PBXGroup;
 			children = (
+				6680949F2B2464D2004CA4E1 /* View */,
+				6680949C2B24628F004CA4E1 /* Model */,
 				668094722B246276004CA4E1 /* CurrencyAppApp.swift */,
 				668094742B246276004CA4E1 /* ContentView.swift */,
 				668094762B246278004CA4E1 /* Assets.xcassets */,
@@ -125,6 +135,24 @@
 				6680948F2B246278004CA4E1 /* CurrencyAppUITestsLaunchTests.swift */,
 			);
 			path = CurrencyAppUITests;
+			sourceTree = "<group>";
+		};
+		6680949C2B24628F004CA4E1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6680949D2B2462A2004CA4E1 /* FixerInterface.swift */,
+				668094A42B2466F2004CA4E1 /* Currency.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6680949F2B2464D2004CA4E1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				668094A02B2464EF004CA4E1 /* CurrencyExchangeView.swift */,
+				668094A22B2465DD004CA4E1 /* CurrencyButtonView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +285,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				668094A52B2466F2004CA4E1 /* Currency.swift in Sources */,
+				668094A32B2465DD004CA4E1 /* CurrencyButtonView.swift in Sources */,
 				668094752B246276004CA4E1 /* ContentView.swift in Sources */,
 				668094732B246276004CA4E1 /* CurrencyAppApp.swift in Sources */,
+				668094A12B2464EF004CA4E1 /* CurrencyExchangeView.swift in Sources */,
+				6680949E2B2462A2004CA4E1 /* FixerInterface.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
