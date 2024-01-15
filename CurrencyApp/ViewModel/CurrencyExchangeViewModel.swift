@@ -24,8 +24,7 @@ class CurrencyExchangeViewModel {
     private func calculateTargetExchangeRate(of amount: Double, from baseCurrency: Currency, to targetCurrency: Currency, from exchangeRates: [String: Double]) -> Double {
         guard let baseRate = exchangeRates[baseCurrency.rawValue] else {return 0}
         guard let targetRate = exchangeRates[targetCurrency.rawValue] else {return 0}
-        guard let EUORate = exchangeRates[Currency.EUR.rawValue] else {return 0}
-        return amount * baseRate / EUORate * targetRate
+        return amount * targetRate / baseRate
     }
     
 }

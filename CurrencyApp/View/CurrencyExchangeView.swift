@@ -43,7 +43,7 @@ struct CurrencyExchangeView: View {
                     TextField("Enter amount", text: $baseAmount)
                         .padding()
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .onChange(of: baseAmount) { newValue, _ in
+                        .onChange(of: baseAmount) { _, newValue in
                             //TODO: Guard on non number inputs
                             //TODO: customize the keyboard for numbers only
                             updateExchangeRate(forBaseAmount: newValue)
