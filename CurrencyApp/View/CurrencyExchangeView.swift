@@ -28,28 +28,28 @@ struct CurrencyExchangeView: View {
                         let tempCurrency = baseCurrency
                         baseCurrency = targetCurrency
                         targetCurrency = tempCurrency
-                        // TODO: update UI and recalculate
-                        
                     }) {
                         Image(systemName: "arrow.left.arrow.right")
                     }
                     
                     
                     Spacer()
-                    Text("From")
+                    Text("To")
                     currencySelectionView(selectedOption: $targetCurrency)
                 }
-                HStack{
+                HStack(spacing: 0){
                     TextField("Enter amount", text: $baseAmount)
                         .padding()
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .onChange(of: baseAmount) { _, newValue in
                             //TODO: Guard on non number inputs
                             //TODO: customize the keyboard for numbers only
-                            updateExchangeRate(forBaseAmount: newValue)
+                            updateExchangeRate()
                         }
                     Text($targetAmount.wrappedValue)
+                        .frame(minWidth: 0, maxWidth: .infinity)
                 }
+                
                 
                 NavigationLink(destination: HistoryView()) {
                     Text("Details")
@@ -57,13 +57,16 @@ struct CurrencyExchangeView: View {
                 
             }
             .padding()
+            .onChange(of: [baseCurrency, targetCurrency]) { _, _ in
+                updateExchangeRate()
+            }
             
         }
     }
     
-    func updateExchangeRate(forBaseAmount newBaseAmount: String) {
+    func updateExchangeRate() {
         //TODO: Guard on optionals
-        model.calculateExchangeRate(of: Double(newBaseAmount) ?? 0.0, from: baseCurrency, to: targetCurrency){ result in
+        model.calculateExchangeRate(of: Double(baseAmount) ?? 0.0, from: baseCurrency, to: targetCurrency){ result in
             switch result {
             case .failure(_):
                 //TODO: Show error message
