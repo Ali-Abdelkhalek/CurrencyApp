@@ -16,51 +16,20 @@ struct CurrencyExchangeView: View {
     
     var body: some View {
         NavigationView{
-            
             VStack {
-                
-                HStack{
-                    Text("From")
-                    currencySelectionView(selectedOption: $baseCurrency)
-                    Spacer()
-                    
-                    Button(action: {
-                        let tempCurrency = baseCurrency
-                        baseCurrency = targetCurrency
-                        targetCurrency = tempCurrency
-                    }) {
-                        Image(systemName: "arrow.left.arrow.right")
-                    }
-                    
-                    
-                    Spacer()
-                    Text("To")
-                    currencySelectionView(selectedOption: $targetCurrency)
-                }
-                HStack(spacing: 0){
-                    TextField("Enter amount", text: $baseAmount)
-                        .padding()
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .onChange(of: baseAmount) { _, newValue in
-                            //TODO: Guard on non number inputs
-                            //TODO: customize the keyboard for numbers only
-                            updateExchangeRate()
-                        }
-                    Text($targetAmount.wrappedValue)
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                }
-                
-                
+                CurrencySelectionView(baseCurrency: $baseCurrency, targetCurrency: $targetCurrency)
+                ExchangeRateView(baseAmount: $baseAmount, targetAmount: $targetAmount)
+                    .onChange(of: baseAmount, { _, _ in
+                        updateExchangeRate()
+                    })
                 NavigationLink(destination: HistoryView()) {
                     Text("Details")
                 }
-                
             }
             .padding()
             .onChange(of: [baseCurrency, targetCurrency]) { _, _ in
                 updateExchangeRate()
             }
-            
         }
     }
     

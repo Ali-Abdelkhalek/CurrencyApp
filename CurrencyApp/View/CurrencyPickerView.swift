@@ -9,11 +9,11 @@ import Foundation
 
 import SwiftUI
 
-struct currencySelectionView: View {
-    @Binding var selectedOption: Currency
+struct CurrencyPickerView: View {
+    @Binding var selectedCurrency: Currency
     
     var body: some View {
-        Picker("From", selection: $selectedOption) {
+        Picker("From", selection: $selectedCurrency) {
             ForEach(Currency.allCases, id: \.self) { index in
                 Text(index.rawValue).tag(index)
             }
@@ -26,6 +26,6 @@ struct currencySelectionView: View {
 struct DropdownMenuButtonView_Previews: PreviewProvider {
     static var previews: some View {
         @State var selectedCurrency: Currency = Currency.AED
-        currencySelectionView(selectedOption: $selectedCurrency)
+        CurrencyPickerView(selectedCurrency: $selectedCurrency)
     }
 }
